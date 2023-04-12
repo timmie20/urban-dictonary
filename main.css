@@ -11,7 +11,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3em;
+  margin: 3em auto;
+  width: 60%;
   flex-direction: column;
   gap: 3em;
 }
@@ -21,7 +22,7 @@ body {
   align-items: center;
   gap: 2em;
 }
-h1{
+.logo {
   font-weight: bold;
   font-size: 40px;
 }
@@ -31,14 +32,13 @@ span{
   color: #fff;
   border-radius: 10px;
 }
-#search-bar {
+input#search-bar {
   width: 250px;
   height: 40px;
   padding-left: 10px;
-  border: solid;
+  border: 1px solid #000;
   border-radius: 15px;
   font-size: 18px;
-  outline: none;
 }
 .output {
   max-width: 600px;
@@ -71,4 +71,15 @@ span{
   display: none;
   max-width: 500px;
   margin: -180px;
+}
+
+@media(max-width: 423px) {
+  .logo {
+    font-size: 18px;
+  }
+}
+@media(max-width: 654px) {
+  .container {
+    width: 90%;
+  }
 }
