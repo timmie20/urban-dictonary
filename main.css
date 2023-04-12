@@ -70,7 +70,17 @@ input#search-bar {
 .loading {
   display: none;
   max-width: 500px;
-  margin: -180px;
+}
+
+.con {
+  min-height: 40vh;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
 }
 
 @media(max-width: 423px) {
@@ -82,4 +92,10 @@ input#search-bar {
   .container {
     width: 90%;
   }
+}
+footer > p {
+  font-size: 11px;
+  font-weight: bold;
+  color: darkorchid;
+  margin: 0;
 }
