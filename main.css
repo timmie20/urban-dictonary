@@ -20,11 +20,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
 }
 .logo {
   font-weight: bold;
   font-size: 40px;
+  margin-bottom: 2em;
 }
 span{
   background-color: darkorchid;
