@@ -1,12 +1,8 @@
 const container = document.querySelector('container')
 const formSubmit = document.getElementById('form')
 const input = document.getElementById('search-bar')
-const output = document.querySelector('.output')
-const word = document.querySelector('.word')
-const definition = document.querySelector('.definition')
-const author = document.querySelector('.author')
-
-
+const result = document.querySelector('.result')
+const loading = document.querySelector('.loading')
 
 const options = {
 	method: 'GET',
@@ -16,25 +12,64 @@ const options = {
 	}
 };
 
+let isLoading = false
+
 function loadWord (e){
-  e.preventDefault()
+  result.innerHTML = ''
+  isLoading = true
+  checkLoading()
   fetch(`https://urban-dictionary7.p.rapidapi.com/v0/define?term=${input.value}`, options)
   .then(function(res){
     return res.json()
   })
   .then(function(data){
     renderUI(data)
+    isLoading = false
+    checkLoading()
   })
+  e.preventDefault()
 }
+
+function checkLoading (){
+  if (isLoading) {
+    loading.style.display = "block"
+  } else {
+    loading.style.display = "none"
+  }
+}
+
 function renderUI(data){
-  console.log(data.list)
-  word.innerText = input.value
-  definition.innerHTML = data.list[1].definition
-  author.innerHTML = `by ${data.list[1].author}`
-
   
+  console.log(data.list)
+  data.list.forEach((item, index) => {
+    if (index < 5) {
+      const output = document.createElement('div')
+    output.classList.add('output')
+    const word = document.createElement('h1')
+    word.classList.add('word')
+    word.innerHTML = input.value
+    const definition = document.createElement('p')
+    definition.classList.add('definition')
+    definition.innerHTML = item.definition
+    const author = document.createElement('p')
+    author.classList.add('author')
+    author.innerHTML = `by ${item.author}`
+    const div = document.createElement('div')
+    div.classList.add('div')
+    const example = document.createElement('p')
+    example.innerHTML = `use case : ${item.example}`
+    output.appendChild(word)
+    output.appendChild(definition)
+    output.appendChild(author)
+    div.appendChild(example)
+    output.appendChild(div)
+    result.appendChild(output)
+    }
+  })
+  input.value = ''
+
 }
 
-
+checkLoading()
 
 formSubmit.addEventListener('submit', loadWord)
