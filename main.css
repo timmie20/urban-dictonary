@@ -70,4 +70,5 @@ span{
 .loading {
   display: none;
   max-width: 500px;
+  margin: -180px;
 }
